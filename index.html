@@ -80,11 +80,16 @@
 
                 <a href="https://www.linkedin.com/in/arabacibahadir/"> <i target="_blank" rel="noopener" class="fab fa-linkedin-in"></i> Linkedin</a>
 
-                <p><i class="far fa-envelope">  </i> bahadirarabaci@yandex.com</p>
+                <a href="https://arabacibahadir.github.io/folder/bahadirarabaci_cv.pdf" target="_blank"> <i class="far fa-file"> </i> Resume</a>
 
-                <a href="https://arabacibahadir.github.io/folder/bahadirarabaci_cv.pdf" target="_blank">Resume</a>
+
             </nav>
+            <nav>
+                <a href="mailto:bahadirarabaci@yandex.com?subject=From%20website">
+                    <p><i class="far fa-envelope">  </i> bahadirarabaci@yandex.com</p>
+                </a>
 
+            </nav>
         </section>
 
         <section id="work" data-auto-theme="g" data-camera-pos='{"x":1.6264026631799302,"y":1.2948229057672256,"z":5.986972351580601,"rx":-0.8697633991850208,"ry":-0.1868166573247362,"rz":-0.21659510346244576}'>
@@ -237,6 +242,24 @@
         transform: scale(1.5);
     }
     
+    .fa-file {
+        font-weight: normal;
+        font-style: normal;
+        font-display: block;
+    }
+    
+    .fa-file:before {
+        display: inline-block;
+        color: var(--link-color);
+        text-decoration: none;
+        transform: scale(1);
+        transition: transform 0.5s var(--easing);
+    }
+    
+    .fa-file:hover::before {
+        transform: scale(1.5);
+    }
+    
     .fa-envelope {
         font-size: 20px;
         font-weight: normal;
@@ -250,6 +273,10 @@
         text-decoration: none;
         transform: scale(1);
         transition: transform 0.5s var(--easing);
+    }
+    
+    .fa-envelope:hover::before {
+        transform: scale(1.5);
     }
 </style>
 
