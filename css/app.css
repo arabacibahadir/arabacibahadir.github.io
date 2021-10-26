@@ -17,7 +17,7 @@
     text-decoration: inherit;
     font-variant: normal;
     text-transform: none;
-    margin-right: .5em
+    margin-right: .6em
 }
 
 .icon-globe:before {
@@ -64,12 +64,12 @@ a[class*=icon-]::before {
     display: inline-block;
     color: var(--link-color);
     text-decoration: none;
-    transform: scale(1);
+    transform: scale(1.4);
     transition: transform .5s var(--easing)
 }
 
 a[class*=icon-]:hover::before {
-    transform: scale(1.5)
+    transform: scale(1.9)
 }
 
 :root {
@@ -105,7 +105,7 @@ html {
 body {
     min-height: 100vh;
     margin: 0;
-    font: 1rem/2 var(--text-font), sans-serif
+    font: 1rem/2 var(--text-font), sans-serif;
 }
 
 h1,
