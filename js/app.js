@@ -46,22 +46,13 @@ document.body.addEventListener('bg3d/disabled', () => {
 	document.getElementById('performance-notice').classList.remove('active');
 });
 
-////////////
+
 // Splitting
 Splitting({
 	target: 'h1, h2',
 	by: 'chars'
 });
 
-//////////
-// 3D Tilt
-/* import ThreedTilt from './threed-tilt.js';
-
-document.querySelectorAll('#work article').forEach(el => {
-	new ThreedTilt(el).mount();
-}); */
-
-////////////
 // Scrollspy
 const scrollspyObserver = new IntersectionObserver(entries => entries.forEach(entry => {
 	if (entry.isIntersecting) {
@@ -76,7 +67,6 @@ document.querySelectorAll('section').forEach(el => {
 	scrollspyObserver.observe(el);
 });
 
-////////////
 // Set theme
 var autoThemeEnabled = true;
 const allThemes = [];
@@ -126,7 +116,6 @@ document.querySelectorAll('[data-auto-theme]').forEach(el => {
 	autoThemeObserver.observe(el);
 });
 
-////////////////////
 // Highlight visible
 document.querySelectorAll('[data-highlight-visible]').forEach(el => {
 	const links = el.querySelectorAll('a[href^="#"]');
