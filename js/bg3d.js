@@ -1,21 +1,12 @@
 'use strict';
 
-/////////
 // Vendor
 import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js';
 import { GLTFLoader } from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'https://unpkg.com/three@0.127.0/examples/jsm/controls/OrbitControls.js';
-// import { TransformControls } from 'https://unpkg.com/three@0.127.0/examples/jsm/controls/TransformControls.js';
-// import { EffectComposer } from 'https://unpkg.com/three@0.127.0/examples/jsm/postprocessing/EffectComposer.js';
-// import { RenderPass } from 'https://unpkg.com/three@0.127.0/examples/jsm/postprocessing/RenderPass.js';
-// import { GlitchPass } from 'https://unpkg.com/three@0.127.0/examples/jsm/postprocessing/GlitchPass.js';
-// import { BokehPass } from 'https://unpkg.com/three@0.127.0/examples/jsm/postprocessing/BokehPass.js';
-// import { UnrealBloomPass } from 'https://unpkg.com/three@0.127.0/examples/jsm/postprocessing/UnrealBloomPass.js';
 
-//////
 // App
 export default class Bg3d {
-	//////////////
 	// Constructor
 	constructor (el, conf) {
 		this.el = el;
@@ -41,10 +32,9 @@ export default class Bg3d {
 		this.loadEnv();
 		this.lights();
 		this.framerate();
-		// this.postProcessing(); NOTE: Disabled PP for now not sure how to keep BG transparent :/
 
 		if (this.config.dev) {
-			document.documentElement.classList.add('dev'); // NOTE: Some CSS differs in dev mode
+			document.documentElement.classList.add('dev');
 			this.camera.position.z = 10;
 			this.scene.add(new THREE.AxesHelper(500));
 			this.controls = new OrbitControls(this.camera, this.renderer.domElement);
@@ -76,7 +66,7 @@ export default class Bg3d {
 	}
 
 	///////
-	// Init
+	// Init - !
 	init () {
 		// Store object references here
 		this.objects = {};
@@ -269,47 +259,10 @@ export default class Bg3d {
 			this.camera.rotation.z = oldRot.z;
 		});
 
-		// NOTE: This doesn't work
-		/* new TWEEN.Tween(this.camera.rotation).to({x: newPos.rx, y: newPos.ry, z: newPos.rz}, this.config.camTransDur).easing(this.config.easing).start().onComplete(() => {
-			this.camera.rotation.x = newPos.rx;
-			this.camera.rotation.y = newPos.ry;
-			this.camera.rotation.z = newPos.rz;
-		}); */
-
-		// Tween rotation with lookAt
-		// https://stackoverflow.com/a/25278875/1074594
-		/* const initRot = new THREE.Euler().copy(this.camera.rotation);
-
-		console.log('INITIAL:');
-		console.log(initRot);
-
-		// Look at new position temporarily
-		this.camera.lookAt(newPos.lx, newPos.ly, newPos.lz);
-
-		// Copy rotation of new lookAt
-		const newRot = new THREE.Euler().copy(this.camera.rotation);
-
-		console.log('NEW:');
-		console.log(newRot);
-
-		// Go back to initial rotation
-		this.camera.rotation.copy(initRot);
-
-		// Now tween to new rotation
-		// WTF does this not work!?
-		// https://stackoverflow.com/questions/66734479/unable-to-tween-threejs-camera-rotation
-		// NOTE: Could definitely use solution from above here too, but not using lookAt so
-		new TWEEN.Tween(this.camera.rotation).to({x: newRot.x, y: newRot.y, z: newRot.z}, this.config.camTransDur).easing(this.config.easing).start().onComplete(() => {
-			console.log('Setting rotation manually');
-			console.log(newRot);
-
-			this.camera.rotation.x = newRot.x;
-			this.camera.rotation.y = newRot.y;
-			this.camera.rotation.z = newRot.z;
-		}); */
+		
 	}
 
-	////////////
+	
 	// Mouse pos
 	mousePos () {
 		document.body.addEventListener('mousemove', e => {
@@ -510,7 +463,6 @@ export default class Bg3d {
 
 		this.animate();
 		this.renderer.render(this.scene, this.camera);
-		// this.composer.render();
 
 		if (this.trackFps) {
 			this.trackFramerate();
