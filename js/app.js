@@ -1,16 +1,11 @@
 'use strict';
 
-///////
 // Bg3d
 import Bg3d from './bg3d.js';
-
 window.bg3d = new Bg3d(document.getElementById('bg'));
-
 var bg3dRunning = true;
-
 function render () {
 	window.bg3d.render();
-
 	if (bg3dRunning) {
 		requestAnimationFrame(render);
 	}
@@ -103,9 +98,7 @@ const autoThemeObserver = new IntersectionObserver(entries => entries.forEach(en
 		if (theme === 'random') {
 			theme = allThemes[Math.floor(Math.random() * allThemes.length)]
 		}
-
 		const active = Array.from(allThemeButtons).filter(tb => tb.dataset.setTheme === theme);
-
 		if (active) {
 			active[0].click();
 		}
