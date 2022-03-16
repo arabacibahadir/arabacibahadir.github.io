@@ -1,7 +1,6 @@
 @mixin list-inline {
 	margin-left: 0;
 	list-style: none;
-
 	> * {
 		display: inline-block;
 		margin: 0 var(--spacing-medium) 0 0;
@@ -19,7 +18,6 @@
 @mixin threed-tilt {
 	--threed-tilt-x: 0;
 	--threed-tilt-y: 0;
-
 	transform-origin: 50% 50%;
 	transform: perspective(300px) rotateX(0deg) rotateY(0deg);
 	transition: transform 0.5s var(--easing);
@@ -28,7 +26,6 @@
 	&.threed-tilt-active {
 		transform: perspective(300px) rotateX(calc(8deg * var(--threed-tilt-y))) rotateY(calc(8deg * var(--threed-tilt-x) * -1));
 	}
-
 	> * {
 		transform: translateZ(50px);
 	}
