@@ -1,21 +1,12 @@
 'use strict';
 
-/////////
 // Vendor
 import * as THREE from 'https://unpkg.com/three@0.127.0/build/three.module.js';
 import { GLTFLoader } from 'https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'https://unpkg.com/three@0.127.0/examples/jsm/controls/OrbitControls.js';
-// import { TransformControls } from 'https://unpkg.com/three@0.127.0/examples/jsm/controls/TransformControls.js';
-// import { EffectComposer } from 'https://unpkg.com/three@0.127.0/examples/jsm/postprocessing/EffectComposer.js';
-// import { RenderPass } from 'https://unpkg.com/three@0.127.0/examples/jsm/postprocessing/RenderPass.js';
-// import { GlitchPass } from 'https://unpkg.com/three@0.127.0/examples/jsm/postprocessing/GlitchPass.js';
-// import { BokehPass } from 'https://unpkg.com/three@0.127.0/examples/jsm/postprocessing/BokehPass.js';
-// import { UnrealBloomPass } from 'https://unpkg.com/three@0.127.0/examples/jsm/postprocessing/UnrealBloomPass.js';
 
-//////
 // App
 export default class Bg3d {
-	//////////////
 	// Constructor
 	constructor (el, conf) {
 		this.el = el;
@@ -75,7 +66,6 @@ export default class Bg3d {
 		console.log(JSON.stringify(cameraPos));
 	}
 
-	///////
 	// Init
 	init () {
 		// Store object references here
@@ -109,8 +99,6 @@ export default class Bg3d {
 		});
 	}
 
-	///////
-	// Load
 	// Load scene, enable shadows and store references to our objects
 	load () {
 		const loader = new GLTFLoader();
@@ -159,7 +147,6 @@ export default class Bg3d {
 		});
 	}
 
-	////////////////////////
 	// Load evnvironment map
 	loadEnv () {
 		const loader = new THREE.TextureLoader();
@@ -173,29 +160,11 @@ export default class Bg3d {
 		});
 	}
 
-	/////////
 	// Lights
 	// NOTE: Lights are included in the scene
 	lights () {
 		this.ambLight = new THREE.AmbientLight(0xffffff, 0.5);
 		this.scene.add(this.ambLight);
-
-		/* this.spotLight = new THREE.SpotLight(0xffffff, 2.5, 0, Math.PI / 10, 1);
-
-		this.spotLight.position.set(-10, 10, 10);
-
-		this.spotLight.castShadow = true;
-		this.spotLight.shadow.bias = -0.0002;
-		this.spotLight.shadow.mapSize.width = 512 * 8;
-		this.spotLight.shadow.mapSize.height = 512 * 8;
-		this.spotLight.shadow.camera.near = 1;
-		this.spotLight.shadow.camera.far = 1000;
-
-		this.scene.add(this.spotLight);
-
-		if (this.config.dev) {
-			this.scene.add(new THREE.SpotLightHelper(this.spotLight));
-		} */
 	}
 
 	////////
@@ -214,7 +183,6 @@ export default class Bg3d {
 		this.scene.add(this.floor);
 	}
 
-	//////////////////
 	// Post processing
 	postProcessing () {
 		this.composer = new EffectComposer(this.renderer);
@@ -231,12 +199,9 @@ export default class Bg3d {
 		});
 
 		this.composer.addPass(render);
-		// this.composer.addPass(bokeh);
-		// this.composer.addPass(glitch);
-		// this.composer.addPass(bloom);
+
 	}
 
-	/////////////
 	// Camera pos
 	// Change position and rotation of camera as user scrolls into a new [data-camera-pos] element
 	cameraPos () {
@@ -269,47 +234,9 @@ export default class Bg3d {
 			this.camera.rotation.z = oldRot.z;
 		});
 
-		// NOTE: This doesn't work
-		/* new TWEEN.Tween(this.camera.rotation).to({x: newPos.rx, y: newPos.ry, z: newPos.rz}, this.config.camTransDur).easing(this.config.easing).start().onComplete(() => {
-			this.camera.rotation.x = newPos.rx;
-			this.camera.rotation.y = newPos.ry;
-			this.camera.rotation.z = newPos.rz;
-		}); */
-
-		// Tween rotation with lookAt
-		// https://stackoverflow.com/a/25278875/1074594
-		/* const initRot = new THREE.Euler().copy(this.camera.rotation);
-
-		console.log('INITIAL:');
-		console.log(initRot);
-
-		// Look at new position temporarily
-		this.camera.lookAt(newPos.lx, newPos.ly, newPos.lz);
-
-		// Copy rotation of new lookAt
-		const newRot = new THREE.Euler().copy(this.camera.rotation);
-
-		console.log('NEW:');
-		console.log(newRot);
-
-		// Go back to initial rotation
-		this.camera.rotation.copy(initRot);
-
-		// Now tween to new rotation
-		// WTF does this not work!?
-		// https://stackoverflow.com/questions/66734479/unable-to-tween-threejs-camera-rotation
-		// NOTE: Could definitely use solution from above here too, but not using lookAt so
-		new TWEEN.Tween(this.camera.rotation).to({x: newRot.x, y: newRot.y, z: newRot.z}, this.config.camTransDur).easing(this.config.easing).start().onComplete(() => {
-			console.log('Setting rotation manually');
-			console.log(newRot);
-
-			this.camera.rotation.x = newRot.x;
-			this.camera.rotation.y = newRot.y;
-			this.camera.rotation.z = newRot.z;
-		}); */
+		
 	}
 
-	////////////
 	// Mouse pos
 	mousePos () {
 		document.body.addEventListener('mousemove', e => {
@@ -322,7 +249,7 @@ export default class Bg3d {
 		});
 	}
 
-	///////////////////////////
+
 	// Keep track of framerate
 	framerate () {
 		this.fpsEl = document.querySelector('[data-fps]');
@@ -368,7 +295,7 @@ export default class Bg3d {
 		}
 	}
 
-	///////////////
+
 	// Grab Objects
 	// Save references to our objects and their original positions
 	grabObjects () {
@@ -400,7 +327,7 @@ export default class Bg3d {
 		});
 	}
 
-	//////////
+
 	// Animate
 	animate () {
 		const elapsedTime = this.clock.getElapsedTime();
@@ -503,7 +430,7 @@ export default class Bg3d {
 		TWEEN.update();
 	}
 
-	/////////
+
 	// Render
 	render () {
 		this.deltaTime = this.clock.getDelta();
