@@ -1,6 +1,5 @@
 'use strict';
 
-// Bg3d
 import Bg3d from './bg3d.js';
 window.bg3d = new Bg3d(document.getElementById('bg'));
 var bg3dRunning = true;
@@ -57,7 +56,6 @@ const scrollspyObserver = new IntersectionObserver(entries => entries.forEach(en
 		entry.target.classList.remove('in-view');
 	}
 }), {threshold: 0.25});
-
 document.querySelectorAll('section').forEach(el => {
 	scrollspyObserver.observe(el);
 });
@@ -66,22 +64,16 @@ document.querySelectorAll('section').forEach(el => {
 var autoThemeEnabled = true;
 const allThemes = [];
 const allThemeButtons = document.querySelectorAll('[data-set-theme]');
-
 allThemeButtons.forEach(el => {
 	const theme = el.dataset.setTheme;
-
 	allThemes.push(theme);
-
 	if (document.documentElement.classList.contains('theme-' + theme)) {
 		el.classList.add('active');
 	}
-
 	el.addEventListener('click', e => {
-		// NOTE: If manually triggered click (most likely...)
 		if (e.x !== 0 && e.y !== 0) {
 			autoThemeEnabled = false;
 		}
-
 		allThemes.forEach(t => document.documentElement.classList.remove('theme-' + t));
 		allThemeButtons.forEach(tb => tb.classList.remove('active'));
 
@@ -122,8 +114,6 @@ document.querySelectorAll('[data-highlight-visible]').forEach(el => {
 			Array.from(links).filter(l => l.getAttribute('href') === '#' + entry.target.id)[0].classList.remove('active');
 		}
 	}), {threshold: 0.25});
-
 	targets.forEach(t => observer.observe(t));
 });
-
 document.documentElement.classList.add('loaded');
