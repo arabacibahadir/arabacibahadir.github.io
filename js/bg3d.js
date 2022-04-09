@@ -18,14 +18,12 @@ export default class Bg3d {
 			camTransDur: 1500,
 			dev: false // NOTE: Dev mode - enables free camera and more
 		}, conf);
-
 		// Enable dev through query string
 		const params = new URLSearchParams(window.location.search);
 
 		if (params.get('dev')) {
 			this.config.dev = true;
 		}
-
 		// Kick off
 		this.init();
 		this.load();
@@ -62,7 +60,6 @@ export default class Bg3d {
 			ry: this.camera.rotation.y,
 			rz: this.camera.rotation.z
 		};
-
 		console.log(JSON.stringify(cameraPos));
 	}
 
@@ -102,14 +99,12 @@ export default class Bg3d {
 	// Load scene, enable shadows and store references to our objects
 	load () {
 		const loader = new GLTFLoader();
-
 		loader.load(this.config.scene, glb => {
 			glb.scene.traverse(node => {
 				// Cast shadows on all meshes
 				if (node.isMesh) {
 					node.castShadow = true;
 					node.receiveShadow = true;
-
 					// And do this...? Anisotropic Filtering I guess?
 					if (node.material.map) {
 						node.material.map.anisotropy = 16;
@@ -129,7 +124,6 @@ export default class Bg3d {
 					}
 				}
 			});
-
 			// Add scene
 			this.scene.add(glb.scene);
 
@@ -139,7 +133,6 @@ export default class Bg3d {
 			// Hide dev floor
 			if (!this.config.dev) {
 				const devFloor = this.scene.getObjectByName('dev_floor');
-
 				if (devFloor) {
 					devFloor.visible = false;
 				}
@@ -153,21 +146,17 @@ export default class Bg3d {
 
 		loader.load(this.config.envMap, texture => {
 			const renderTarget = new THREE.WebGLCubeRenderTarget(texture.image.height);
-
 			renderTarget.fromEquirectangularTexture(this.renderer, texture);
-
 			this.scene.environment = renderTarget.texture;
 		});
 	}
 
 	// Lights
-	// NOTE: Lights are included in the scene
 	lights () {
 		this.ambLight = new THREE.AmbientLight(0xffffff, 0.5);
 		this.scene.add(this.ambLight);
 	}
 
-	////////
 	// Floor
 	// Create a transparent shadow catcher
 	// https://threejs.org/docs/#api/en/materials/ShadowMaterial
@@ -186,7 +175,6 @@ export default class Bg3d {
 	// Post processing
 	postProcessing () {
 		this.composer = new EffectComposer(this.renderer);
-
 		const render = new RenderPass(this.scene, this.camera);
 		const glitch = new GlitchPass();
 		const bloom = new UnrealBloomPass({x: this.el.clientWidth, y: this.el.clientHeight}, 1.5, 0.5, 0.85);
