@@ -31,7 +31,6 @@ export default class Bg3d {
 		this.lights();
 		this.framerate();
 		// this.postProcessing(); NOTE: Disabled PP for now not sure how to keep BG transparent :/
-
 		if (this.config.dev) {
 			document.documentElement.classList.add('dev'); // NOTE: Some CSS differs in dev mode
 			this.camera.position.z = 10;
