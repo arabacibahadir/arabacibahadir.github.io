@@ -2,7 +2,6 @@
 	0% {
 		transform: translateX(calc(4vw + 100%));
 	}
-
 	100% {
 		transform: translateX(0);
 	}
@@ -12,7 +11,6 @@
 	0% {
 		transform: translateY(calc(var(--spacing-medium) * 2 + 100%));
 	}
-
 	100% {
 		transform: translateX(0);
 	}
